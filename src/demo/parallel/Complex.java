@@ -85,6 +85,32 @@ public class Complex {
         return this;
     }
 
+    public Complex minus(Complex b){
+        re -= b.re;
+        im -= b.im;
+        return this;
+    }
+
+    public Complex divide(Complex b) {
+        double denom = b.re * b.re + b.im * b.im;
+        double real = (re * b.re + im * b.im) / denom;
+        double imag = (im * b.re - re * b.im) / denom;
+        re = real;
+        im = imag;
+        return this;
+    }
+
+    public double modulus() {
+        return Math.sqrt(re * re + im * im);
+    }
+
+    public Complex pow(int n) {
+        Complex result = new Complex(1, 0);
+        for (int i = 0; i < n; i++) {
+            result = result.times(this);
+        }
+        return result;
+    }
     /**
      * Square of Complex object's length, we're using square of length to 
      * eliminate the computation of square root
